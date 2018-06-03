@@ -1,3 +1,1 @@
-current code has warnings, but im too lazy for fix that.
-shoutouts to nolem and bshear.
-based on https://github.com/arispoloway/OpenTimer-TF2
+current code has many warnings, but im too lazy for fix that (i dont care about warnings tbh).
