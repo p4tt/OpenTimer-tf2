@@ -5,8 +5,8 @@
 
 
 #define PLUGIN_VERSION_CORE	"1.0"
-#define PLUGIN_AUTHOR_CORE	"p4tt"
-#define PLUGIN_NAME_CORE	"TF2jumpRU"
+#define PLUGIN_AUTHOR_CORE	"p4tt, nolem, bshear, mehis"
+#define PLUGIN_NAME_CORE	"OpenTimer"
 #define PLUGIN_URL_CORE		""
 
 
@@ -26,18 +26,18 @@ enum PlayerState
 enum
 {
 	RUN_INVALID = -1,
-	
+
 	RUN_MAIN,
 	RUN_BONUS1,
 	RUN_BONUS2,
-	
+
 	NUM_RUNS
 };
 
 enum
 {
 	STYLE_INVALID = -1,
-	
+
 	STYLE_NORMAL,
 	STYLE_AUTOBHOP,
 	STYLE_CROUCHED,
@@ -47,7 +47,7 @@ enum
 enum
 {
 	MODE_INVALID = -1,
-	 
+
 	MODE_SCOUT,
 	MODE_SOLDIER,
 	MODE_PYRO,
@@ -57,7 +57,7 @@ enum
 	MODE_SNIPER,
 	MODE_MEDIC,
 	MODE_SPY,
-	
+
 	NUM_MODES
 };
 
@@ -105,4 +105,4 @@ stock int GetStrafeDir( float oldyaw, float newyaw )
 		&& ( newyaw > oldyaw // Is our current yaw bigger than last time? Strafing to the left.
 		|| ( oldyaw > 170.0 && newyaw < -170.0 ) ) ) // If that didn't pass, there might be a chance of 180 -> -180.
 		? STRAFE_LEFT : STRAFE_RIGHT;
-} 
+}

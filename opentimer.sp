@@ -13,7 +13,7 @@
 
 #define CSS // Comment out for CSS.
 
-//define	RECORD // Comment out for no recording and record playback.
+//define	RECORD 
 
 #define RECORD_SAVE_WEPSWITCHING // Comment out to disable bot weapon switching.
 #define RECORD_SAVE_ATTACKS // Comment out to disable bot weapon attacks.
