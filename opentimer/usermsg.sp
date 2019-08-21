@@ -107,7 +107,7 @@ stock void ShowKeyHintText( int client, int target )
 		wr = g_flMapBestTime[run][style][mode];
 		if ( !IsFakeClient( target ) )
 		{
-			if ( g_flClientBestTime[target][run][style][mode] != TIME_INVALID )
+				if ( g_flClientBestTime[target][run][style][mode] != TIME_INVALID )
 			{
 				FormatSeconds( g_flClientBestTime[target][run][style][mode], szTime );
 			}

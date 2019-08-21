@@ -25,7 +25,7 @@ public Action Event_ClientDeath( Handle hEvent, const char[] szEvent, bool bDont
 	if ( !(client = GetClientOfUserId( GetEventInt( hEvent, "userid" ) )) ) return;
 	
 	
-	PRINTCHAT( client, CHAT_PREFIX..."Type "...CLR_TEAM..."!respawn"...CLR_TEXT..." to spawn again." );
+	PRINTCHAT( client, CHAT_PREFIX..."Type "...CLR_TEAM..."!r"...CLR_TEXT..." to spawn." );
 }
 
 // Hide bot name changes.

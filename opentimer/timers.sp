@@ -22,7 +22,7 @@ public Action Timer_Connected( Handle hTimer, int client )
     if ( !(client = GetClientOfUserId( client )) ) return Plugin_Handled;
    
    
-    PRINTCHATV( client,  CLR_CUSTOM1..."Server settings: %.0ftick, %.0f/%.0faa.", g_flTickRate, g_flDefAirAccelerate, g_flBhopAirAccelerate );
+    PRINTCHATV( client,  CLR_CUSTOM1..."Timer by p4tt, nolem, bshear, mehis. Server settings: %.0ftick, %.0f/%.0faa.", g_flTickRate, g_flDefAirAccelerate, g_flBhopAirAccelerate );
    
     
 
@@ -37,19 +37,7 @@ public Action Timer_Connected( Handle hTimer, int client )
  
 public Action Timer_SpawnPlayer( Handle hTimer, int client )
 {
-    // Force client to spawn in case you cannot join through the menu.
-    if ( (client = GetClientOfUserId( client )) &&  view_as<int>(GetClientTeam( client )) <  view_as<int>(TFTeam_Spectator))
-    {
-        SpawnPlayer( client );
-    }
-	if (TF2_GetPlayerClass(client) == TFClass_Soldier)
-		{
-			SetPlayerStyle(client, STYLE_NORMAL );
-		}		
-		if (TF2_GetPlayerClass(client) == TFClass_DemoMan)
-		{
-			SetPlayerStyle(client, STYLE_AUTOBHOP );
-		}
+    
 	
 }
  
@@ -57,12 +45,8 @@ public Action Timer_SpawnPlayer( Handle hTimer, int client )
 public Action Timer_HudTimer( Handle hTimer )
 {
     static int client;
-	
     for ( client = 1; client <= MaxClients; client++ )
     {
-	if (!IsClientInGame(client)) continue;
-		if (GetClientTeam(client) > 1)	
-		{
         StopSound(client, SNDCHAN_STATIC, "UI/hint.wav");
         if ( !IsClientInGame( client ) ) continue;
        
@@ -75,34 +59,25 @@ public Action Timer_HudTimer( Handle hTimer )
         BlockBounces(client);
 	
         // Dead? Find the player we're spectating.
-        if ( !IsPlayerAlive( client ) && GetClientUserId(client) != 0 && GetClientUserId( client )>=MaxClients )
+        if ( GetClientTeam( client)== TFTeam_Spectator)
         {
             target = GetClientSpecTarget( client );
             // Invalid spec target?
             // -1 = No spec target.
             // No target? No HUD.
-            for ( client = 1; client <= MaxClients; client++ )
-    {
-			if ( target < 1 || !IsPlayerAlive( target ) )
+            if ( target < 1 || !IsPlayerAlive( target ) )
             {
                 //PrintHintText( client, "" );
                 continue;
             }
-			}
-			
-	
         }
        
         // Side info
         // Does not work in CS:GO. :(
 #if !defined CSGO
-if (GetClientUserId(client) != 0 & GetClientUserId( client )<=MaxClients & !IsPlayerAlive( client ))	
-		{
         if ( !(g_fClientHideFlags[client] & HIDEHUD_SIDEINFO) )
         {
-		
             ShowKeyHintText( client, target );
-			}
         }
 #endif
 
@@ -213,11 +188,11 @@ if (GetClientUserId(client) != 0 & GetClientUserId( client )<=MaxClients & !IsPl
             PrintHintText( client, hintOutput);
             continue;
         }
-		}
     }
    
     return Plugin_Continue;
 }
+ 
  
  public Action Timer_classcheck( Handle hTimer )
 {

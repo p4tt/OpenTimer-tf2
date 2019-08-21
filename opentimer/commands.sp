@@ -551,7 +551,7 @@ public Action Command_Practise_Noclip( int client, int args )
 	if ( GetEntityMoveType( client ) == MOVETYPE_WALK )
 	{	
 		if ( !g_bClientPractising[client] )
-			SetPlayerPractice( client, true );
+			
 		
 		SetEntityMoveType( client, MOVETYPE_NOCLIP );
 	}

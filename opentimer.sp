@@ -687,8 +687,7 @@ public void OnPluginStart()
 	RegConsoleCmd( "sm_lastused", Command_Practise_GotoLastUsed );
 	RegConsoleCmd( "sm_used", Command_Practise_GotoLastUsed );
 
-	RegConsoleCmd( "sm_noclip", Command_Practise_Noclip );
-	RegConsoleCmd( "sm_fly", Command_Practise_Noclip );
+
 
 
 
@@ -915,6 +914,15 @@ public void Event_ConVar_Scroll_AirAccelerate( Handle hConVar, const char[] szOl
 
 public void OnMapStart()
 {
+int iCP = -1;
+	while ((iCP = FindEntityByClassname(iCP, "trigger_capture_area")) != -1)
+	{
+		SetVariantString("2 0");
+		AcceptEntityInput(iCP, "SetTeamCanCap");
+		SetVariantString("3 0");
+		AcceptEntityInput(iCP, "SetTeamCanCap");
+	}
+
 	// Do the precaching first. See if that is causing client crashing.
 	int i;
 
@@ -1340,17 +1348,7 @@ public void Event_PostThinkPost_Client( int client )
 			SetPlayerPractice( client, true );
 		}
 		// No prespeeding.
-		else if ( g_iClientStyle[client] == STYLE_AUTOBHOP && g_flPreSpeed > 0.0 && GetEntitySpeedSquared( client ) > g_flPreSpeedSq && GetEntityMoveType( client ) != MOVETYPE_NOCLIP )
-		{
-			if ( !IsSpamming( client ) )
-			{
-				PRINTCHATV( client, CHAT_PREFIX..."No prespeeding allowed! ("...CLR_TEAM..."%.0fspd"...CLR_TEXT...")", g_flPreSpeed );
-			}
-
-			TeleportEntity( client, NULL_VECTOR, NULL_VECTOR, g_vecNull );
-
-			return;
-		}
+	
 
 
 		ChangeClientState( client, STATE_RUNNING );
@@ -1604,11 +1602,7 @@ stock void TeleportPlayerToStart( int client )
 
 stock void SetPlayerStyle( int client, int reqstyle )
 {
-	if ( !IsAllowedStyle( reqstyle ) )
-	{
-		PRINTCHAT( client, CHAT_PREFIX..."That style is not allowed!" );
-		return;
-	}
+	
 
 
 	// Reset style back to normal if requesting the same style as they have now.
@@ -1708,44 +1702,7 @@ stock void SetPlayerRun( int client, int reqrun )
 
 stock void SetPlayerPractice( int client, bool mode )
 {
-#if defined RECORD
-	g_bClientRecording[client] = false;
 
-	if ( g_hClientRec[client] != null )
-	{
-		delete g_hClientRec[client];
-		g_hClientRec[client] = null;
-	}
-#endif
-
-	if ( g_hClientPracData[client] != null )
-	{
-		delete g_hClientPracData[client];
-		g_hClientPracData[client] = null;
-	}
-
-	g_iClientCurSave[client] = INVALID_SAVE;
-	g_iClientLastUsedSave[client] = INVALID_SAVE;
-
-	if ( mode )
-	{
-		g_hClientPracData[client] = new ArrayList( view_as<int>( PracData ) );
-
-		if ( mode != g_bClientPractising[client] && !IsSpamming( client ) )
-			PRINTCHAT( client, CHAT_PREFIX..."You're now in practice mode! Type "...CLR_TEAM..."!practice"...CLR_TEXT..." to toggle." );
-	}
-	else
-	{
-		if ( g_iClientState[client] != STATE_START )
-			TeleportPlayerToStart( client );
-
-		SetEntityMoveType( client, MOVETYPE_WALK );
-
-		if ( mode != g_bClientPractising[client] && !IsSpamming( client ) )
-			PRINTCHAT( client, CHAT_PREFIX..."You're now in normal mode!" );
-	}
-
-	g_bClientPractising[client] = mode;
 }
 
 stock bool IsSpamming( int client )
