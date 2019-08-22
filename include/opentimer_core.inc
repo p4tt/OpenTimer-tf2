@@ -6,7 +6,7 @@
 
 #define PLUGIN_VERSION_CORE	"1.0"
 #define PLUGIN_AUTHOR_CORE	"p4tt, nolem, bshear, mehis"
-#define PLUGIN_NAME_CORE	"OpenTimer"
+#define PLUGIN_NAME_CORE	"Timer"
 #define PLUGIN_URL_CORE		"https://github.com/TotallyMehis/SM-OpenTimer"
 
 

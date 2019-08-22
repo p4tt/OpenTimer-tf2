@@ -47,9 +47,9 @@ public Action Timer_HudTimer( Handle hTimer )
     static int client;
     for ( client = 1; client <= MaxClients; client++ )
     {
-        StopSound(client, SNDCHAN_STATIC, "UI/hint.wav");
+        
         if ( !IsClientInGame( client ) ) continue;
-       
+        StopSound(client, SNDCHAN_STATIC, "UI/hint.wav");
        
         static int target;
         target = client;       
@@ -60,13 +60,13 @@ public Action Timer_HudTimer( Handle hTimer )
 	
         // Dead? Find the player we're spectating.
         if ( GetClientTeam( client)== TFTeam_Spectator)
-        {
-            target = GetClientSpecTarget( client );
+			{
+        target = GetClientSpecTarget( client );
             // Invalid spec target?
             // -1 = No spec target.
             // No target? No HUD.
-            if ( target < 1 || !IsPlayerAlive( target ) )
-            {
+         if ( target < 1 || !IsPlayerAlive( target ) )
+			{
                 //PrintHintText( client, "" );
                 continue;
             }
@@ -303,7 +303,7 @@ public Action Timer_DrawZoneBeams( Handle hTimer )
        
         iClients = 0;
         for ( client = 1; client <= MaxClients; client++ )
-            if ( IsClientInGame( client ) && !IsFakeClient( client ) )
+            if ( IsClientInGame( client ) && !IsFakeClient( client ) && GetClientTeam( client)== TFTeam_Spectator )
             {
                 // Check if we are close enough to start rendering these.
                 // You cannot send too many beams to the client.

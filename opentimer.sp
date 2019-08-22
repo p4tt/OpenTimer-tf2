@@ -606,8 +606,8 @@ public void OnPluginStart()
 	RegConsoleCmd( "sm_start", Command_Spawn );
 
 
-	//RegConsoleCmd("sm_setstart", Command_Set_Start);
-	//RegConsoleCmd("sm_clearstart", Command_Clear_Start);
+	RegConsoleCmd("sm_setstart", Command_Set_Start);
+	RegConsoleCmd("sm_clearstart", Command_Clear_Start);
 
 
 	// SPEC
