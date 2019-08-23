@@ -70,7 +70,7 @@ public Action Timer_HudTimer( Handle hTimer )
                 //PrintHintText( client, "" );
                 continue;
             }
-        }
+			}
        
         // Side info
         // Does not work in CS:GO. :(

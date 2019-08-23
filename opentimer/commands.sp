@@ -158,11 +158,109 @@ public Action Command_Set_Start(int client, int args)
 	}
 	GetEntPropVector(client, Prop_Send, "m_vecOrigin", g_fClientRespawnPosition[client]);
 	GetClientAbsAngles(client, g_fClientRespawnAngles[client]);
-	PRINTCHAT( client, CHAT_PREFIX..."Starting position set. Use /clearstart to return to the default starting point." );
+	PRINTCHAT( client, CHAT_PREFIX..."Starting position set. Use /clearstart or /clear to return to the default starting point." );
 	return Plugin_Handled;
 
 }
 public Action Command_Clear_Start(int client, int args){
+	if (!client) return Plugin_Handled;
+	g_fClientRespawnPosition[client][0] = 0.0;
+	g_fClientRespawnPosition[client][1] = 0.0;
+	g_fClientRespawnPosition[client][2] = 0.0;
+	
+	g_fClientRespawnAngles[client][0] = 0.0;
+	g_fClientRespawnAngles[client][1] = 0.0;
+	g_fClientRespawnAngles[client][2] = 0.0;
+	
+	PRINTCHAT( client, CHAT_PREFIX..."Starting position reset." );
+	
+	
+	return Plugin_Handled;
+}
+
+
+public Action Command_Test(int client, int args){
+	if (!client) return Plugin_Handled;
+	g_fClientRespawnPosition[client][0] = 0.0;
+	g_fClientRespawnPosition[client][1] = 0.0;
+	g_fClientRespawnPosition[client][2] = 0.0;
+	
+	g_fClientRespawnAngles[client][0] = 0.0;
+	g_fClientRespawnAngles[client][1] = 0.0;
+	g_fClientRespawnAngles[client][2] = 0.0;
+	
+
+	
+	if ( !args )
+	{
+		if ( !g_bIsLoaded[RUN_BONUS1] && g_bIsLoaded[RUN_BONUS2] )
+		
+		
+		
+			SetPlayerRun( client, RUN_BONUS2 );
+
+		else
+			SetPlayerRun( client, RUN_BONUS1 );
+		
+		return Plugin_Handled;
+	}
+	char szArg[6];
+	GetCmdArgString( szArg, sizeof( szArg ) );
+	StripQuotes( szArg );
+	
+	if ( szArg[0] == '1' || StrEqual( szArg, "one", false ) )
+	{
+		SetPlayerRun( client, RUN_BONUS1 );
+	}
+	else if ( szArg[0] == '2' || StrEqual( szArg, "two", false ) )
+	{
+		SetPlayerRun( client, RUN_BONUS2 );
+	}
+	else
+	{
+		PRINTCHATV( client, CHAT_PREFIX..."Invalid bonus \"%s\" (sm_bonus 1/2)", szArg );
+	}
+	
+	return Plugin_Handled;
+	
+
+}
+
+public Action Command_Test1(int client, int args){
+	if (!client) return Plugin_Handled;
+	g_fClientRespawnPosition[client][0] = 0.0;
+	g_fClientRespawnPosition[client][1] = 0.0;
+	g_fClientRespawnPosition[client][2] = 0.0;
+	
+	g_fClientRespawnAngles[client][0] = 0.0;
+	g_fClientRespawnAngles[client][1] = 0.0;
+	g_fClientRespawnAngles[client][2] = 0.0;
+	
+	
+		SetPlayerRun( client, RUN_BONUS1 );
+		
+	return Plugin_Handled;
+}
+
+
+public Action Command_Test2(int client, int args){
+	if (!client) return Plugin_Handled;
+	g_fClientRespawnPosition[client][0] = 0.0;
+	g_fClientRespawnPosition[client][1] = 0.0;
+	g_fClientRespawnPosition[client][2] = 0.0;
+	
+	g_fClientRespawnAngles[client][0] = 0.0;
+	g_fClientRespawnAngles[client][1] = 0.0;
+	g_fClientRespawnAngles[client][2] = 0.0;
+	
+	
+	
+		SetPlayerRun( client, RUN_BONUS2 );
+	return Plugin_Handled;
+}
+
+
+stock  void ClearStart(int client, int args){
 	if (!client) return Plugin_Handled;
 	g_fClientRespawnPosition[client][0] = 0.0;
 	g_fClientRespawnPosition[client][1] = 0.0;
@@ -551,7 +649,7 @@ public Action Command_Practise_Noclip( int client, int args )
 	if ( GetEntityMoveType( client ) == MOVETYPE_WALK )
 	{	
 		if ( !g_bClientPractising[client] )
-			
+			SetPlayerPractice( client, true );
 		
 		SetEntityMoveType( client, MOVETYPE_NOCLIP );
 	}
@@ -567,7 +665,11 @@ public Action Command_Run_Bonus( int client, int args )
 	if ( !args )
 	{
 		if ( !g_bIsLoaded[RUN_BONUS1] && g_bIsLoaded[RUN_BONUS2] )
+		
+		
+		
 			SetPlayerRun( client, RUN_BONUS2 );
+
 		else
 			SetPlayerRun( client, RUN_BONUS1 );
 		
@@ -598,6 +700,14 @@ public Action Command_Run_Main( int client, int args )
 {
 	if ( !client ) return Plugin_Handled;
 	
+	g_fClientRespawnPosition[client][0] = 0.0;
+	g_fClientRespawnPosition[client][1] = 0.0;
+	g_fClientRespawnPosition[client][2] = 0.0;
+	
+	g_fClientRespawnAngles[client][0] = 0.0;
+	g_fClientRespawnAngles[client][1] = 0.0;
+	g_fClientRespawnAngles[client][2] = 0.0;
+	
 	SetPlayerRun( client, RUN_MAIN );
 	
 	return Plugin_Handled;
@@ -607,7 +717,10 @@ public Action Command_Run_Bonus1( int client, int args )
 {
 	if ( !client ) return Plugin_Handled;
 	
+	
+	
 	SetPlayerRun( client, RUN_BONUS1 );
+	
 	
 	return Plugin_Handled;
 }
@@ -615,6 +728,7 @@ public Action Command_Run_Bonus1( int client, int args )
 public Action Command_Run_Bonus2( int client, int args )
 {
 	if ( !client ) return Plugin_Handled;
+
 	
 	SetPlayerRun( client, RUN_BONUS2 );
 	

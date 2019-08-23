@@ -607,7 +607,9 @@ public void OnPluginStart()
 
 
 	RegConsoleCmd("sm_setstart", Command_Set_Start);
+	RegConsoleCmd("sm_set", Command_Set_Start);
 	RegConsoleCmd("sm_clearstart", Command_Clear_Start);
+	RegConsoleCmd("sm_clear", Command_Clear_Start);
 
 
 	// SPEC
@@ -661,14 +663,17 @@ public void OnPluginStart()
 	RegConsoleCmd( "sm_main", Command_Run_Main );
 	RegConsoleCmd( "sm_m", Command_Run_Main );
 
-	RegConsoleCmd( "sm_bonus", Command_Run_Bonus );
-	RegConsoleCmd( "sm_b", Command_Run_Bonus );
+	RegConsoleCmd( "sm_bonus", Command_Test );
+	RegConsoleCmd( "sm_b", Command_Test );
+	RegConsoleCmd( "sm_test", Command_Test );
+	RegConsoleCmd( "sm_test1", Command_Test1 );
+	RegConsoleCmd( "sm_test2", Command_Test2 );
 
-	RegConsoleCmd( "sm_bonus1", Command_Run_Bonus1 );
-	RegConsoleCmd( "sm_b1", Command_Run_Bonus1 );
+	RegConsoleCmd( "sm_bonus1", Command_Test1 );
+	RegConsoleCmd( "sm_b1", Command_Test1 );
 
-	RegConsoleCmd( "sm_bonus2", Command_Run_Bonus2 );
-	RegConsoleCmd( "sm_b2", Command_Run_Bonus2 );
+	RegConsoleCmd( "sm_bonus2", Command_Test2 );
+	RegConsoleCmd( "sm_b2", Command_Test2 );
 
 
 	// PRACTICE
@@ -676,16 +681,22 @@ public void OnPluginStart()
 	RegConsoleCmd( "sm_practice", Command_Practise );
 	RegConsoleCmd( "sm_prac", Command_Practise );
 	RegConsoleCmd( "sm_p", Command_Practise );
-
-
-
-
-
+	
+	RegConsoleCmd( "sm_saveloc", Command_Practise_SavePoint );
+	RegConsoleCmd( "sm_save", Command_Practise_SavePoint );
+	
+	RegConsoleCmd( "sm_cp", Command_Practise_GotoPoint );
+	RegConsoleCmd( "sm_checkpoint", Command_Practise_GotoPoint );
+	RegConsoleCmd( "sm_gotocp", Command_Practise_GotoPoint );
+	
 	RegConsoleCmd( "sm_lastcp", Command_Practise_GotoLastSaved );
 	RegConsoleCmd( "sm_last", Command_Practise_GotoLastSaved );
-
+	
 	RegConsoleCmd( "sm_lastused", Command_Practise_GotoLastUsed );
 	RegConsoleCmd( "sm_used", Command_Practise_GotoLastUsed );
+	
+	RegConsoleCmd( "sm_no-clip", Command_Practise_Noclip );
+	RegConsoleCmd( "sm_fly", Command_Practise_Noclip );
 
 
 
