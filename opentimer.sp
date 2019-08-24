@@ -44,7 +44,7 @@
 // E.g: 60 * 45 * 100 = 270 000
 #define	RECORDING_MAX_LENGTH 350000 // Maximum recording length (def. 45 minutes with 100tick)
 
-#define RECORDS_PRINT_MAX	15 // Maximum records to print for players.
+#define RECORDS_PRINT_MAX	999 // Maximum records to print for players.
 #define CHEATS_PRINT_MAX	30 // Maximum cheat history records to print.
 
 
