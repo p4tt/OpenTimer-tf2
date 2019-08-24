@@ -401,7 +401,8 @@ public void Event_StartTouchPost_CheckPoint( int trigger, int ent )
 				prefix = '+';
 			}
 			
-			PrintCenterText( ent, "CP #%i (REC %c%06.3fs)", id + 1, prefix, flLeft );
+			//PrintCenterText( ent, "CP #%i (REC %c%06.3fs)", id + 1, prefix, flLeft );
+			PRINTCHAT( ent, "Checkpoint #%i (REC %c%06.3fs)", id + 1, prefix, flLeft );
 		}
 	}
 	

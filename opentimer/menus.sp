@@ -483,8 +483,7 @@ public Action Command_Credits( int client, int args )
 	pPanel.DrawItem( "", ITEMDRAW_SPACER );
 	
 	pPanel.DrawText( "Thanks to: " );
-	pPanel.DrawText( "Peace-Maker - For making botmimic. Learned a lot." );
-	pPanel.DrawText( "george. - For the recording tip." );
+	pPanel.DrawText( "p4tt - For porting this shit to tf2." );
 	pPanel.DrawItem( "", ITEMDRAW_SPACER );
 	
 	pPanel.DrawItem( "Exit", ITEMDRAW_CONTROL );
