@@ -1,2 +1,2 @@
 
-work for jump server
+fuck scotch
