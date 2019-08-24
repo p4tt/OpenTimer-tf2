@@ -547,7 +547,7 @@ public Action Command_Practise_SavePoint( int client, int args )
 	
 	if ( g_hClientPracData[client] == null || !g_bClientPractising[client] )
 	{
-		PRINTCHAT( client, CHAT_PREFIX..."You have to be in "...CLR_TEAM..."practice"...CLR_TEXT..." mode! ("...CLR_TEAM..."!prac"...CLR_TEXT...")" );
+		PRINTCHAT( client, CHAT_PREFIX..."You have to be in "...CLR_TEAM..."timer disabled"...CLR_TEXT..." mode for use save and teleport! ("...CLR_TEAM..."!timer"...CLR_TEXT...")" );
 		return Plugin_Handled;
 	}
 	
@@ -604,7 +604,7 @@ public Action Command_Practise_GotoLastSaved( int client, int args )
 	
 	if ( g_hClientPracData[client] == null || !g_bClientPractising[client] )
 	{
-		PRINTCHAT( client, CHAT_PREFIX..."You have to be in "...CLR_TEAM..."practice"...CLR_TEXT..." mode! ("...CLR_TEAM..."!prac"...CLR_TEXT...")" );
+		PRINTCHAT( client, CHAT_PREFIX..."You have to be in "...CLR_TEAM..."timer disabled"...CLR_TEXT..." mode for use save and teleport! ("...CLR_TEAM..."!timer"...CLR_TEXT...")" );
 		return Plugin_Handled;
 	}
 	
@@ -628,7 +628,7 @@ public Action Command_Practise_GotoLastUsed( int client, int args )
 	
 	if ( g_hClientPracData[client] == null || !g_bClientPractising[client] )
 	{
-		PRINTCHAT( client, CHAT_PREFIX..."You have to be in "...CLR_TEAM..."practice"...CLR_TEXT..." mode! ("...CLR_TEAM..."!prac"...CLR_TEXT...")" );
+		PRINTCHAT( client, CHAT_PREFIX..."You have to be in "...CLR_TEAM..."timee disabled"...CLR_TEXT..." mode for use save and teleport! ("...CLR_TEAM..."!timer"...CLR_TEXT...")" );
 		return Plugin_Handled;
 	}
 	

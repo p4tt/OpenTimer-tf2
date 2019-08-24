@@ -51,7 +51,7 @@ stock void DB_LogError( const char[] szMsg, int client = 0, const char[] szClien
 }
 
 
-// Initialize sounds so important. I'm so cool.
+// Initialize soundsounds so important. I'm so cool.
 // Create connection with database!
 stock void DB_InitializeDatabase()
 {

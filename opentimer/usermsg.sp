@@ -124,30 +124,30 @@ stock void ShowKeyHintText( int client, int target )
 			{
 				/*if ( style == STYLE_W || style == STYLE_A_D )
 				{
-					FormatEx( szText, sizeof( szText ), "Jumps: %i\n \n%s\nPersonal Record: %s\n%s",
+					FormatEx( szText, sizeof( szText ), "Jumps: %i\n \nClass: %s%s\nPersonal Record: %s\n%s",
 						g_nClientJumps[target],
 						g_szStyleName[NAME_LONG][style], // Show our style.
 						szStylePostFix, // Don't forget postfix
 						szTime,
-						( g_bClientPractising[target] ? "(Practice Mode)" : "" ) ); // Have a practice mode warning for players!
+						( g_bClientPractising[target] ? "(Timer disabled)" : "" ) ); // Have a Timer disabled warning for players!
 				}
 				else
 				{*/
-					// "Strafes: XXXXXCL Sync: 100.0CL Sync: 100.0CR Sync: 100.0CJumps: XXXXC CClass: Real HSW ScrollCPB: 00:00:00.00C(Practice Mode)"
-					FormatEx( szText, sizeof( szText ), "%s\nPersonal Record: %s\n%s",
+					// "Strafes: XXXXXCL Sync: 100.0CL Sync: 100.0CR Sync: 100.0CJumps: XXXXC CClass: Real HSW ScrollCPB: 00:00:00.00C(Timer disabled)"
+					FormatEx( szText, sizeof( szText ), "Class: %s%s\nPersonal Record: %s\n%s",
 						g_szStyleName[NAME_LONG][style],
 						szStylePostFix,
 						szTime,
-						( g_bClientPractising[target] ? "(Practice Mode)" : "" ) );
+						( g_bClientPractising[target] ? "(Timer disabled)" : "" ) );
 				//}
 			}
 			else
 			{
-				FormatEx( szText, sizeof( szText ), "%s\nPersonal Record: %s\n%s",
+				FormatEx( szText, sizeof( szText ), "Class: %s%s\nPersonal Record: %s\n%s",
 					g_szStyleName[NAME_LONG][style],
 					szStylePostFix,
 					szTime,
-					( g_bClientPractising[target] ? "(Practice Mode)" : "" ) );
+					( g_bClientPractising[target] ? "(Timer disabled)" : "" ) );
 			}
 		}
 		else

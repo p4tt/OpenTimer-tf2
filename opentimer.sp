@@ -637,7 +637,7 @@ public void OnPluginStart()
 	RegConsoleCmd( "sm_showweapons", Command_ToggleHUD );
 	RegConsoleCmd( "sm_weapons", Command_ToggleHUD );
 
-	RegConsoleCmd( "sm_timer", Command_ToggleHUD );
+	RegConsoleCmd( "sm_settings", Command_ToggleHUD );
 
 
 
@@ -678,12 +678,14 @@ public void OnPluginStart()
 
 	// PRACTICE
 	RegConsoleCmd( "sm_practise", Command_Practise );
+	RegConsoleCmd( "sm_timer", Command_Practise );
 	RegConsoleCmd( "sm_practice", Command_Practise );
 	RegConsoleCmd( "sm_prac", Command_Practise );
 	RegConsoleCmd( "sm_p", Command_Practise );
 	
-	RegConsoleCmd( "sm_saveloc", Command_Practise_SavePoint );
+   RegConsoleCmd( "sm_saveloc", Command_Practise_SavePoint );
 	RegConsoleCmd( "sm_save", Command_Practise_SavePoint );
+	RegConsoleCmd( "sm_s", Command_Practise_SavePoint );
 	
 	RegConsoleCmd( "sm_cp", Command_Practise_GotoPoint );
 	RegConsoleCmd( "sm_checkpoint", Command_Practise_GotoPoint );
@@ -692,11 +694,13 @@ public void OnPluginStart()
 	RegConsoleCmd( "sm_lastcp", Command_Practise_GotoLastSaved );
 	RegConsoleCmd( "sm_last", Command_Practise_GotoLastSaved );
 	
-	RegConsoleCmd( "sm_lastused", Command_Practise_GotoLastUsed );
-	RegConsoleCmd( "sm_used", Command_Practise_GotoLastUsed );
+	RegConsoleCmd("sm_t", Command_Practise_GotoLastSaved, "Teleports you to your saved location.");
+	RegConsoleCmd("sm_tp", Command_Practise_GotoLastSaved, "Teleports you to your saved location.");
+	RegConsoleCmd("sm_tele", Command_Practise_GotoLastSaved, "Teleports you to your saved location.");
+	RegConsoleCmd("sm_teleport", Command_Practise_GotoLastSaved, "Teleports you to your saved location.");
 	
-	RegConsoleCmd( "sm_no-clip", Command_Practise_Noclip );
-	RegConsoleCmd( "sm_fly", Command_Practise_Noclip );
+	//RegConsoleCmd( "sm_noclip", Command_Practise_Noclip );
+	//RegConsoleCmd( "sm_fly", Command_Practise_Noclip );
 
 
 
@@ -1713,8 +1717,46 @@ stock void SetPlayerRun( int client, int reqrun )
 
 stock void SetPlayerPractice( int client, bool mode )
 {
+#if defined RECORD
+	g_bClientRecording[client] = false;
 
+	if ( g_hClientRec[client] != null )
+	{
+		delete g_hClientRec[client];
+		g_hClientRec[client] = null;
+	}
+#endif
+
+	if ( g_hClientPracData[client] != null )
+	{
+		delete g_hClientPracData[client];
+		g_hClientPracData[client] = null;
+	}
+
+	g_iClientCurSave[client] = INVALID_SAVE;
+	g_iClientLastUsedSave[client] = INVALID_SAVE;
+
+	if ( mode )
+	{
+		g_hClientPracData[client] = new ArrayList( view_as<int>( PracData ) );
+
+		if ( mode != g_bClientPractising[client] && !IsSpamming( client ) )
+			PRINTCHAT( client, CHAT_PREFIX..."Timer disabled! Type "...CLR_TEAM..."!timer"...CLR_TEXT..." to enable." );
+	}
+	else
+	{
+		if ( g_iClientState[client] != STATE_START )
+			TeleportPlayerToStart( client );
+
+		SetEntityMoveType( client, MOVETYPE_WALK );
+
+		if ( mode != g_bClientPractising[client] && !IsSpamming( client ) )
+			PRINTCHAT( client, CHAT_PREFIX..."Timer enabled" );
+	}
+
+	g_bClientPractising[client] = mode;
 }
+
 
 stock bool IsSpamming( int client )
 {
