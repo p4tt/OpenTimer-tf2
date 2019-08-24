@@ -149,6 +149,11 @@ public Action Command_Spawn( int client, int args )
 }
 public Action Command_Set_Start(int client, int args)
 {
+
+		static int target;
+        target = client;
+	if ( g_iClientState[target] == STATE_START )
+	{
 	if (!client) return Plugin_Handled;
 	if (!IsPlayerAlive(client)) return Plugin_Handled;
 	
@@ -160,7 +165,9 @@ public Action Command_Set_Start(int client, int args)
 	GetClientAbsAngles(client, g_fClientRespawnAngles[client]);
 	PRINTCHAT( client, CHAT_PREFIX..."Starting position set. Use /clearstart or /clear to return to the default starting point." );
 	return Plugin_Handled;
+}
 
+else {PRINTCHAT( client, CHAT_PREFIX..."You can use setstart only in start zone." );}
 }
 public Action Command_Clear_Start(int client, int args){
 	if (!client) return Plugin_Handled;
