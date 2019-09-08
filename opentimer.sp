@@ -2837,15 +2837,3 @@ public int getClass(int client)
 }
 
 
-
-stock void LockCPs()
-{
-	int iCP = -1;
-	while ((iCP = FindEntityByClassname(iCP, "trigger_capture_area")) != -1)
-	{
-		SetVariantString("2 0");
-		AcceptEntityInput(iCP, "SetTeamCanCap");
-		SetVariantString("3 0");
-		AcceptEntityInput(iCP, "SetTeamCanCap");
-	}
-}

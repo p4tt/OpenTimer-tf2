@@ -402,7 +402,7 @@ public void Event_StartTouchPost_CheckPoint( int trigger, int ent )
 			}
 			
 			//PrintCenterText( ent, "CP #%i (REC %c%06.3fs)", id + 1, prefix, flLeft );
-			PRINTCHAT( ent, "Checkpoint #%i (REC %c%06.3fs)", id + 1, prefix, flLeft );
+			PRINTCHAT( ent, CHAT_PREFIX...CLR_CUSTOM1..."Checkpoint #%i (REC %c%06.3fs)", id + 1, prefix, flLeft );
 		}
 	}
 	
